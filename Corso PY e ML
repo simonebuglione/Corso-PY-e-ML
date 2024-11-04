@@ -1,0 +1,54 @@
+class Biblioteca:
+    def __init__(self):
+        #lista per memorizzare i libri
+        self.libri = []
+
+    class Libro:
+        #per creare i singoli oggetti libro che vengono poi aggiunti alla  lista precedente
+        def __init__(self, titolo, autore, anno_pubblicazione):
+            self.titolo= titolo
+            self.autore= autore
+            self.anno_pubblicazione= anno_pubblicazione #per salvare titolo, autore e anno
+#per fornire una rappresentazione testuale utile e comprensibile degli oggetti della classe libro
+        def __str__(self):
+            return f"{self.titolo} di {self.autore} ({self.anno_pubblicazione})"
+
+
+
+    def crea_libro(self):
+        #richiesta di inserimento dei dettagli del libro
+        titolo= input("titolo libro:")
+        autore= input("autore libro:")
+        anno_pubblicazione = input("anno di pubblicazione:")
+        
+        #crewzione di un nuovo libro e lo aggiunta di quest'utlimo alla lista
+        nuovo_libro = self.Libro(titolo, autore, anno_pubblicazione)
+        self.libri.append(nuovo_libro) #append lo uso per aggiungere i libri alla fine della lista biblio
+        print(f"Libro '{titolo}' aggiunto con successo!")
+
+    def stampa_libri(self):
+        #stampia di tutti i libri presenti nella biblioteca
+        if not self.libri:
+            print("Nessun libro presente nella biblioteca")
+            return
+
+        print("Libri presenti nella biblioteca:")
+        for libro in self.libri:
+            print(libro)
+
+
+
+#esempio di utilizzo della classe biblioteca
+biblioteca = Biblioteca()
+
+while True:
+    comando = input("Vuoi creare un libro(C) o stampare i libri(S)?(Q per uscire):").strip().upper()
+    if comando== 'C':
+        biblioteca.crea_libro()
+    elif comando == 'S':
+        biblioteca.stampa_libri()
+    elif comando == 'Q':
+        print("Uscita dalla biblioteca")
+        break
+    else:
+        print("comando non riconosciuto, riprova")
