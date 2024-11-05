@@ -43,6 +43,7 @@ class ContoBancario:
     def visualizza_saldo(self) -> float:
         return self.__saldo
 
+
     #getter per il titolare
     @property #il metodo decorato con @property consente di accedere al saldo come se fosse un attributo (conto.saldo)
     def titolare(self) -> str:
@@ -57,7 +58,7 @@ class ContoBancario:
         else:
             print('Nome del titolare non valido. Deve essere una stringa non vuota.')
 
-#esempio di utilizzo
+#esempio test
 conto = ContoBancario("Simone Rossi", 1000.0)
 conto.deposita(500.0)  #deposito valido
 conto.preleva(300.0)   #prelievo valido
