@@ -1,0 +1,34 @@
+conteggio = 0
+
+while conteggio < 5 
+print (conteggio)
+conteggio +=1
+
+
+numero =[1,2,3,4,5]
+print(numero)
+
+
+if controllo == False
+inserimento = int(input())
+numeri.append(inserimento)
+scelta=input()
+if scelta == "no":
+    controllo =True
+    
+for numero in numeri:
+    print(numero)
+
+
+controllo =True
+controlloNumerico = 0
+
+while controllo != False:
+
+    controllo = False
+    break
+
+while controlloNumerico<5:
+    break
+
+

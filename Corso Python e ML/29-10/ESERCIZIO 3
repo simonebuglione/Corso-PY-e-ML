@@ -1,0 +1,95 @@
+"""punto 1: utilizzo di if scrivi un sistema che prende in input un numero e stampa "pari" se il numero è pari e "dispari" se il numero è dispari.
+punto 2: utilizz di while e rangescrivi un sistema che prende in input un numero intero positivo n e stampa tutti i numeri da n a 0 (compreso) decrementando di 1. deve potersi ripetere all'infinito
+punto 3: utilizzo di forscrivi un sistema che prende in input una lista di numeri e stampa il quadrato di ciascun numero nella lista
+punto 4: utilizzo di if, while e for insisme. scrivi un sistema che prende in input una lista di numeri interi che precednete è stata valoreizzata dall'utente.UnicodeTranslateErroril sistema deve:
+utilizzare un ciclo for per trovare il numero massimo nella lista
+    utilizzare un ciclo while per contare quanti unmeri sono presenti nella lista
+utilizzare una condizione if per stampare "lista vuota"se la lista è vuota altrimenti stampare il numero massimo trovato e il numero di elementi nella lista.
+"""
+
+
+#punto 1 utilizzo di if
+numero = int(input("Inserisci un numero: "))
+
+#controlla se il numero è pari o dispari: stampa pari se il numero è divisibile per 2, altrimenti viceversa
+if numero % 2 == 0:
+    print("pari")  
+else:
+    print("dispari")  
+
+
+#punto 2: ciclo infinito while true per ripetizioni
+while True:
+    n = int(input("Inserisci un numero intero positivo: "))
+
+    #controlla che il numero sia positivo
+    if n < 0:
+        print("Inserisci un numero positivo")
+        continue  #se il numero non è positivo chiede nuovamente
+
+    # range per stampare i numeri da n a 0
+    for i in range(n, -1, -1):
+        print(i)
+
+    #chiede se l'utente vuole ripetere
+    ripeti = input("Vuoi inserire un altro numero? (si/no): ").lower()
+    if ripeti != "si":
+        break  #se la risposta è diversa da 'si' si interrompe il programma
+
+
+    #punto 3: chiede all'utente di inserire una lista di numeri separati da spazi
+numeri = input("Inserisci una lista di numeri separati da spazi: ")
+
+#converti la stringa di input in una lista di numeri interi
+numeri = [int(n) for n in numeri.split()]
+
+#utilizza un ciclo for per calcolare e stampare il quadrato di ciascun numero
+for numero in numeri:
+    print(f"Il quadrato di {numero} è {numero**2}")
+
+
+#punto 4: chiedo all'utente di inserire una lista di valori separati da spazi
+valori = input("Inserisci una lista di numeri e parole separati da spazi: ")
+
+#divido i valori in due liste: una per i numeri e una per le stringhe
+numeri = []
+stringhe = []
+
+# itera attraverso ogni valore
+for valore in valori.split():
+    #Verifica se è un numero e lo converte in int
+    if valore.isdigit(): #controlla se composto solo da cifre
+        numeri.append(int(valore)) #se è un numero lo converte in intero
+    else:
+        stringhe.append(valore) #se non è un numero viene considerato come stringa e aggiunto alle stringhe
+
+#controlla se entrambe le liste sono vuote
+if not numeri and not stringhe:
+    print("Lista vuota")
+else:
+    #trova il massimo nei numeri se presenti
+    if numeri:
+        massimo_num = numeri[0]
+        for numero in numeri:
+            if numero > massimo_num:
+                massimo_num = numero
+        print(f"Il numero massimo nella lista è: {massimo_num}")
+    else:
+        print("Nessun numero nella lista")
+
+    # trova la stringa più lunga nelle stringhe se presenti
+    if stringhe:
+        max_stringa = stringhe[0]
+        for stringa in stringhe:
+            if len(stringa) > len(max_stringa):
+                max_stringa = stringa
+        print(f"La stringa più lunga nella lista è: '{max_stringa}' con {len(max_stringa)} caratteri.")
+    else:
+        print("Nessuna stringa nella lista")
+
+    #conta gli elementi totali nella lista usando un ciclo while
+conteggio_totale = 0
+for i in range(len(valori.split())):  # Usa range per contare gli elementi
+    conteggio_totale += 1
+
+    print(f"Il numero totale di elementi nella lista è: {conteggio_totale}")

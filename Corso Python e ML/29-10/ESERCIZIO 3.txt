@@ -1,0 +1,37 @@
+#punto 1 utilizzo di if
+numero = int(input("Inserisci un numero: "))
+
+#controlla se il numero è pari o dispari: stampa pari se il numero è divisibile per 2, altrimenti viceversa
+if numero % 2 == 0:
+    print("pari")  
+    print("dispari")  
+
+
+#ciclo infinito while true per ripetizioni
+while True:
+    n = int(input("Inserisci un numero intero positivo: "))
+
+    #controlla che il numero sia positivo
+    if n < 0:
+        print("Inserisci un numero positivo")
+        continue  #se il numero non è positivo chiede nuovamente
+
+    # range per stampare i numeri da n a 0
+    for i in range(n, -1, -1):
+        print(i)
+
+    #hiede se l'utente vuole ripetere
+    ripeti = input("Vuoi inserire un altro numero? (si/no): ").lower()
+    if ripeti != "si":
+        break  #se la risposta è diversa da 'si' si interrompe il programma
+
+
+    #punto 3: chiede all'utente di inserire una lista di numeri separati da spazi
+numeri = input("Inserisci una lista di numeri separati da spazi: ")
+
+#converti la stringa di input in una lista di numeri interi
+numeri = [int(n) for n in numeri.split()]
+
+#utilizza un ciclo for per calcolare e stampare il quadrato di ciascun numero
+for numero in numeri:
+    print(f"Il quadrato di {numero} è {numero**2}")

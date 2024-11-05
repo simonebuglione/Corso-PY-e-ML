@@ -1,0 +1,40 @@
+#inizio del ciclo principale
+while True: #per ripetere all'infinito un ciclo fin quando non viene interrotto
+    #chiedo all'utente di inserire un numero
+    numero = int(input("Inserisci un numero per il conto alla rovescia: "))
+    
+    #fai un conto alla rovescia a partire da quel numero fino a zero stampando ogni numero
+    for numero in range(numero, -1, -1):  #metto -1 perchè se mettessi 0 il conto si fermerebbe a 1
+        print(numero)
+
+
+    #chiedi all'utente se vuole ripetere o meno
+    ripeti = input("Vuoi ripetere il conto alla rovescia? (si/no): ")
+    if ripeti.lower() != 'si':
+        break
+
+#inizio del controllo dei numeri primi
+numeri_primi = []  #lista per memorizzare i numeri primi
+
+#continua fino a trovare 5 numeri primi
+while len(numeri_primi) < 5: 
+    numero = int(input("Inserisci un numero da controllare se è primo: "))
+    
+    #controllo se il numero è primo o no
+    if numero <= 1:
+        print("Il numero non è primo")
+    else:
+        is_prime = True
+        for i in range(2, int(numero**0.5) + 1):  #controllo dei divisori fino alla radice quadrata
+            if numero % i == 0:
+                is_prime = False
+                break #se il numero non è primo interrompo
+        
+        if is_prime:
+            numeri_primi.append(numero)
+            print("Il numero è primo.")
+        else:
+            print("Il numero non è primo.")
+
+#si ferma tutto quando ci sono 5 numeri primi
+print("Hai trovato 5 numeri primi:", numeri_primi)
