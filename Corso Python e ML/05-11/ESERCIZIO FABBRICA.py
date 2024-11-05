@@ -33,7 +33,18 @@ class Prodotto:
 class Elettronica(Prodotto):
     def __init__(self, nome, costo_produzione, prezzo_vendita, garanzia):
         super().__init__(nome, costo_produzione, prezzo_vendita)
-        self.garanzia = garanzia  #durata della garanzia in anni
+        self.__garanzia = garanzia  #durata della garanzia in anni
+
+    @property #consente di accedere al valore dell'attributo privato __garanzia da altre parti del codice
+    def garanzia(self):
+        return self.__garanzia
+
+    @garanzia.setter #consente di modificare il valore dell'attributo privato __garanzia
+    def garanzia(self, valore):
+        if valore > 0:
+            self.__garanzia = valore
+        else:
+            raise ValueError("La garanzia deve essere maggiore di zero")
 
     def __str__(self):
         return f"{self.nome} (Elettronica): Costo: {self.costo_produzione}, Prezzo: {self.prezzo_vendita}, Garanzia: {self.garanzia} anni"
@@ -42,7 +53,18 @@ class Elettronica(Prodotto):
 class Abbigliamento(Prodotto):
     def __init__(self, nome, costo_produzione, prezzo_vendita, materiale):
         super().__init__(nome, costo_produzione, prezzo_vendita)
-        self.materiale = materiale  #materiale del prodotto
+        self.__materiale = materiale  #materiale del prodotto
+
+    @property
+    def materiale(self):
+        return self.__materiale
+
+    @materiale.setter
+    def materiale(self, valore):
+        if valore:
+            self.__materiale = valore
+        else:
+            raise ValueError("Il materiale non può essere vuoto")
 
     def __str__(self):
         return f"{self.nome} (Abbigliamento): Costo: {self.costo_produzione}, Prezzo: {self.prezzo_vendita}, Materiale: {self.materiale}"
@@ -89,17 +111,19 @@ class Fabbrica:
 if __name__ == "__main__":
     fabbrica = Fabbrica()
 
-    # creazione di prodotti
+    #creazione di prodotti
     prodotto1 = Elettronica("Smartphone", 200, 1000, 2)  #2 anni di garanzia
     prodotto2 = Abbigliamento("T-shirt", 10, 45, "Cotone")  #materiale cotone
 
-    # aggiunta di prodotti all'inventario
+    #aggiunta di prodotti all'inventario
     fabbrica.aggiungi_prodotto(prodotto1, 10)
     fabbrica.aggiungi_prodotto(prodotto2, 70)
 
-    # vendita di prodotti
+    #vendita di prodotti
     fabbrica.vendi_prodotto("Smartphone", 5)
     fabbrica.vendi_prodotto("T-shirt", 45)
 
-    # reso dei prodotti
+    #reso dei prodotti
     fabbrica.resi_prodotto("T-shirt", 8)
+
+
