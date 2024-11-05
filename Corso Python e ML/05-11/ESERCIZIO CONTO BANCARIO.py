@@ -16,21 +16,24 @@ Aggiungere metodi "getter" e "setter" per gli attributi come _titolare, applican
 class ContoBancario:
     def __init__(self, titolare: str, saldo: float = 0.0):
         #attributi privati
-        self.__titolare =titolare
-        self.__saldo =saldo
+        self.__titolare = titolare
+        self.__saldo = saldo
+
+    #metodo privato per controllare se l'importo è valido
+    def __importo_valido(self, importo: float) -> bool:
+        return importo > 0  #ritorna True se l'importo è positivo, altrimenti false
 
     #metodo per depositare un importo SOLO se positivo
     def deposita(self, importo: float) -> None:
-        if importo > 0:
+        if self.__importo_valido(importo):  #utilizzo il metodo privato per la validazione
             self.__saldo += importo
             print(f'Deposito di {importo} effettuato. Saldo attuale: {self.__saldo}')
         else:
             print('Importo non valido. Deve essere positivo')
 
-
     #metodo per prelevare un importo solo se sufficiente e positivo
     def preleva(self, importo: float) -> None:
-        if importo > 0:
+        if self.__importo_valido(importo):  #utilizzo dell metodo privato per la validazione
             if self.__saldo >= importo:
                 self.__saldo -= importo
                 print(f'Prelievo di {importo} effettuato. Saldo attuale: {self.__saldo}.')
@@ -42,7 +45,6 @@ class ContoBancario:
     #metodo per visualizzzare il saldo
     def visualizza_saldo(self) -> float:
         return self.__saldo
-
 
     #getter per il titolare
     @property #il metodo decorato con @property consente di accedere al saldo come se fosse un attributo (conto.saldo)
@@ -63,6 +65,6 @@ conto = ContoBancario("Simone Rossi", 1000.0)
 conto.deposita(500.0)  #deposito valido
 conto.preleva(300.0)   #prelievo valido
 print(f'Saldo attuale: {conto.visualizza_saldo()}')  #visualizzazione saldo
-conto.preleva(1500.0)  #prelievo non valido
+conto.preleva(100.0)  #prelievo non valido
 conto.titolare = "Giovanni Bianchi"  #cambia il titolare
 print(f'Titolare attuale: {conto.titolare}')  #visualizza il titolare
