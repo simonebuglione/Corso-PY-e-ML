@@ -1,18 +1,35 @@
-
-
 class Prodotto:
     def __init__(self, nome, costo_produzione, prezzo_vendita):
-        self.nome =nome
-        self.costo_produzione =costo_produzione
-        self.prezzo_vendita =prezzo_vendita
+        self.nome = nome
+        self.costo_produzione = costo_produzione
+        self.prezzo_vendita = prezzo_vendita
+
     def calcola_profitto(self):
         #prezzo - costo per vedere il profitto
         return self.prezzo_vendita - self.costo_produzione
 
 
+class Elettronica(Prodotto):
+    def __init__(self, nome, costo_produzione, prezzo_vendita, garanzia):
+        super().__init__(nome, costo_produzione, prezzo_vendita)
+        self.garanzia = garanzia  #durata della garanzia in anni
+
+    def __str__(self):
+        return f"{self.nome} (Elettronica): Costo: {self.costo_produzione}, Prezzo: {self.prezzo_vendita}, Garanzia: {self.garanzia} anni"
+
+
+class Abbigliamento(Prodotto):
+    def __init__(self, nome, costo_produzione, prezzo_vendita, materiale):
+        super().__init__(nome, costo_produzione, prezzo_vendita)
+        self.materiale = materiale  #materiale del prodotto
+
+    def __str__(self):
+        return f"{self.nome} (Abbigliamento): Costo: {self.costo_produzione}, Prezzo: {self.prezzo_vendita}, Materiale: {self.materiale}"
+
+
 class Fabbrica:
     def __init__(self):
-        self.inventario = {}  #dizionario per  memorizzare l'inventario
+        self.inventario = {}  #dizionario per memorizzare l'inventario
 
     def aggiungi_prodotto(self, prodotto, quantita):
         #aggiungere prodotti all'inventario
@@ -23,13 +40,13 @@ class Fabbrica:
         print(f"Aggiunti {quantita} unità di {prodotto.nome} all'inventario.")
 
     def vendi_prodotto(self, nome_prodotto, quantita):
-        #vende prodotto quindi diminuisce la quantità di prodotto in inventario e stampa il profittoo
+        #vende prodotto quindi diminuisce la quantità di prodotto in inventario e stampa il profitto
         if nome_prodotto in self.inventario:
             #verifica la disponibilità del prodotto (>=)
-            if self.inventario[nome_prodotto]['quantita'] >=quantita:
+            if self.inventario[nome_prodotto]['quantita'] >= quantita:
                 prodotto = self.inventario[nome_prodotto]['prodotto']
-                #toglie il prodotto venduto dallo stock di prod disponibili
-                self.inventario[nome_prodotto]['quantita'] -=quantita
+                #toglie il prodotto venduto dallo stock di prodotti disponibili
+                self.inventario[nome_prodotto]['quantita'] -= quantita
                 profitto = prodotto.calcola_profitto() * quantita
                 print(f"Venduti {quantita} unità di {nome_prodotto}. Profitto: {profitto:.2f} euro")
             else:
@@ -37,37 +54,31 @@ class Fabbrica:
         else:
             print(f"Prodotto {nome_prodotto} non trovato nell'inventario")
 
-
     def resi_prodotto(self, nome_prodotto, quantita):
         #fa il reso di un prodotto, dunque restituendolo all'inventario
         if nome_prodotto in self.inventario:
             #uso += per aumentare la quantità dei prodotti dopo essere stati restituiti
-            self.inventario[nome_prodotto]['quantita'] +=quantita
+            self.inventario[nome_prodotto]['quantita'] += quantita
             print(f"Restituiti {quantita} unità di {nome_prodotto} all'inventario")
         else:
             print(f"Prodotto {nome_prodotto} non trovato nell'inventario")
 
 
-
-
 #esempio di utilizzo
 if __name__ == "__main__":
     fabbrica = Fabbrica()
-    
 
+    # creazione di prodotti
+    prodotto1 = Elettronica("Smartphone", 200, 1000, 2)  #2 anni di garanzia
+    prodotto2 = Abbigliamento("T-shirt", 10, 45, "Cotone")  #materiale cotone
 
-    #creazione di prodotti
-    prodotto1 = Prodotto("Smartphone", 200, 1000)
-    prodotto2 = Prodotto("T-shirt", 10, 45)
-
-
-    #aggiunta di prodotti all'inventario
+    # aggiunta di prodotti all'inventario
     fabbrica.aggiungi_prodotto(prodotto1, 10)
     fabbrica.aggiungi_prodotto(prodotto2, 70)
 
-    #vendita di prodotti
+    # vendita di prodotti
     fabbrica.vendi_prodotto("Smartphone", 5)
     fabbrica.vendi_prodotto("T-shirt", 45)
 
-    #reeso dei prodotti
+    # reso dei prodotti
     fabbrica.resi_prodotto("T-shirt", 8)
