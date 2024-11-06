@@ -31,7 +31,26 @@ class Posto:
 
     def prenota(self):
         #prenotazione del posto se libero
-        if not self._occupato =True
-        print(f"Posto {self._fila}{self.numero} prenotato")
+         if not self._occupato:
+            self._occupato = True
+            print(f"Posto {self._fila}{self._numero} prenotato")
+        else:
+            print(f"Posto {self._fila}{self._numero} già occupato")
+
+
+def libera(self):
+    #funzione che libera il posto se occupato
+    if self._occupato:
+        self.occupato=False
+        print(f"Posto{self._fila}{self._numero} liberato")
     else:
-        print: (f"Posto {self._fila}{self._numero} già occupato") 
+        print(f"Posto{self._fila}{self._numero} già libero")
+
+@property
+def numero(self):
+    return self.numero
+
+@property
+def occupato (self):
+    return self._occupato
+    
