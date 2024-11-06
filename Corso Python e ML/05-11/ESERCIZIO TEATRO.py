@@ -110,6 +110,10 @@ class Teatro:
         else:
             print("Nessun posto occupato al momento")
 
+    def teatro_pieno(self):
+        #EXTRA: controllo se il teatro è full
+        return all(posto.occupato for posto in self._posti)
+
 
 #Test
 teatro = Teatro()
@@ -130,5 +134,11 @@ teatro.stampa_posti_occupati()
 #liberazione posto
 teatro._posti[0].libera()  # Libera il primo posto (posto 1A)
 teatro.stampa_posti_occupati()
+
+
+#tentativo di prenotazione quando il teatro è full
+teatro.prenota_posto(1,"A") #prenota nuovamente posto 1A
+teatro.prenota_posto(2,"A") #""posto 2A
+teatro.prenota_posto(3,"A") #""3A
 
 
