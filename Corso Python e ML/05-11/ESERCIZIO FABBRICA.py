@@ -28,6 +28,7 @@ class Prodotto:
     def calcola_profitto(self):
         #prezzo - costo per vedere il profitto
         return self.prezzo_vendita - self.costo_produzione
+        
 
 
 class Elettronica(Prodotto):
@@ -107,6 +108,20 @@ class Fabbrica:
             print(f"Prodotto {nome_prodotto} non trovato nell'inventario")
 
 
+def gestisci_prodotto(self,prodotto, azione, quantita=1):
+    if isinstance(prodotto, Prodotto):
+        if azione == "aggiungi":
+            self.aggiungi_prodotto(prodotto, quantita)
+        elif azione == "vendi":
+            self.vendi_prodotto(prodotto.nome, quantita)
+        elif azione == "reso":
+            self.resi_prodotto(prodotto.nome, quantita)
+        else:
+            print(f"Azione '{azione}' non rionosciuta per il prodotto {prodotto.nome}")
+    else:
+        print("Tipo di prodotto non valido")
+
+
 #esempio di utilizzo
 if __name__ == "__main__":
     fabbrica = Fabbrica()
@@ -125,5 +140,6 @@ if __name__ == "__main__":
 
     #reso dei prodotti
     fabbrica.resi_prodotto("T-shirt", 8)
+
 
 
