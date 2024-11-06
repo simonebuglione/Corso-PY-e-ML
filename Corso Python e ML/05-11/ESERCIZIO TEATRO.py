@@ -21,3 +21,17 @@ Metodi:
 -prenota_posto(numero, fila): trova e prenota un posto specifico.
 -stampa_posti_occupati(): mostra tutti i posti occupati"""
 
+
+
+class Posto:
+    def __init__ (self, numero: int, fila: str):
+        self._numero =numero
+        self._fila = fila
+        self.occupato =False
+
+    def prenota(self):
+        #prenotazione del posto se libero
+        if not self._occupato =True
+        print(f"Posto {self._fila}{self.numero} prenotato")
+    else:
+        print: (f"Posto {self._fila}{self._numero} già occupato") 
