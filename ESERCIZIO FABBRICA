@@ -10,7 +10,7 @@ class Prodotto:
         return self.prezzo_vendita - self.costo_produzione
 
 
-class Fabbrica:
+class Fabbrica: 
     def __init__(self):
         self.inventario = {}  #dizionario per  memorizzare l'inventario
 
