@@ -35,6 +35,7 @@ class GestorePagamenti: #qui c'è polimorfismo, con gestore pagamenti è possibi
     def __init__(self, metodo_pagamento: MetodoPagamento):
         self.metodo_pagamento = metodo_pagamento
 
+
     #metodo get per ottenere il metodo d pagamento
     def get_metodo_pagamento(self):
         return self.metodo_pagamento
