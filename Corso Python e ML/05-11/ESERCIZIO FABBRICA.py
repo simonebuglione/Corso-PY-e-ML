@@ -120,6 +120,8 @@ def gestisci_prodotto(self,prodotto, azione, quantita=1):
             print(f"Azione '{azione}' non rionosciuta per il prodotto {prodotto.nome}")
     else:
         print("Tipo di prodotto non valido")
+ #con questo metodo è possibile aggiungere, vendere o restituire prodotti in modo più semplice e flessibile e funzioina su qualsiasi tipo di prodotto grazie al polimorfismo
+
 
 
 #esempio di utilizzo
