@@ -78,14 +78,14 @@ class Cliente:
         self.ordinazioni=[] #qui vanno i piatti ordinati
         self.recensione={} #qui le recensioni sui piatti ordinati
 
-        def ordina_piatto(self, ristorante, nome_piatto):
-            if self.budget > 0:
-                if ristorante.prendi_ordinazione(self,nome_piatto):
-                    self.ordinazioni.append(nome_piatto)
-                    print(f"{self.nome} ha ordinato il piatto {nome_piatto}")
-            else:
+    def ordina_piatto(self, ristorante, nome_piatto):
+       if self.budget > 0:
+          if ristorante.prendi_ordinazione(self,nome_piatto):
+             self.ordinazioni.append(nome_piatto)
+             print(f"{self.nome} ha ordinato il piatto {nome_piatto}")
+          else:
                 print(f"{nome_piatto} non è disponibile")
-        else: 
+       else: 
             print(f"{self.nome} non ha più soldi per poter ordinare altri piatti")
 
 #funzione lascia recensione
