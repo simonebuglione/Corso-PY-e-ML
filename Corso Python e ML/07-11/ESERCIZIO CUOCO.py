@@ -69,4 +69,27 @@ class CuocoLinea(PersonaleCucina):
         def cucina_piatto(self, nome_piatto):
             return f"{self.nome} sta preaparando il piatto {nome_piatto}"
         
-        
+
+#classe cliente, creo nuova classe per la gestione di clienti
+class Cliente:
+    def __init__(self, nome, budget):
+        self.nome =nome
+        self.budget=budget
+        self.ordinazioni=[] #qui vanno i piatti ordinati
+        self.recensione={} #qui le recensioni sui piatti ordinati
+
+def ordina_piatto(self, ristorante, nome_piatto):
+    if self.budget > 0:
+        if ristorante.prendi_ordinazione(self,nome_piatto):
+            self.ordinazioni.append(nome_piatto)
+            print(f"{self.nome} ha ordinato il piatto {nome_piatto}")
+        else:
+            print(f"{nome_piatto} non è disponibile")
+    else: 
+        print(f"{self.nome} non ha più soldi per poter ordinare altri piatti")
+
+
+#funzione lascia recensione
+def lascia_recensione(self, piatto, voto):
+    if 1<= voto <=:
+        self
