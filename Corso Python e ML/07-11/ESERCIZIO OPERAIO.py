@@ -58,7 +58,7 @@ muratore= Muratore("Gigi", "Gialli", cazzuola)
 
 #stampa degli oggetti
 print("Dati operaio:")
-operaio.stampa_dati
+operaio.stampa_dati()
 
 print("Dati Muratore:")
-muratore.stampa.dati()
+muratore.stampa_dati()
