@@ -43,3 +43,7 @@ for x in mycursor:
     print(x)
 
 print(mydb)
+
+risultati = mycursor.fetchall() #salviamo tutti i risultati
+for riga in risultati:
+    print(riga)#per vedere questi risultati uso un for
