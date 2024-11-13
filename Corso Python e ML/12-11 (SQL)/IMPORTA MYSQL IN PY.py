@@ -7,4 +7,8 @@ mydb=mysql.connector.connect(
     port=8889
 )
 
+mycursor=mydb.cursor()
+query="create database pythonmysql"
+mycursor.execute
+
 print(mydb)
