@@ -5,7 +5,7 @@ SELECT
     COUNT(City.ID) AS NumeroCittà
 FROM 
     Country
-JOIN 
+LEFT JOIN 
     City ON Country.Code = City.CountryCode
 GROUP BY 
     Country.Name
