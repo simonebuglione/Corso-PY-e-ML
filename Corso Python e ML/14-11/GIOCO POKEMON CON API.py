@@ -58,12 +58,27 @@ def mostra_pokedex(pokedex):
         for numero, pokemon in pokedex.items():
             print(f"ID: {numero}, Nome: {pokemon['nome']}, Abilità: {pokemon['abilita']}, XP: {pokemon['xp']}, Peso: {pokemon['peso']}kg, Altezza: {pokemon['altezza']}m")
 
-# simula una sfida tra due Pokémon
-def sfida_pokemon(pokemon1, pokemon2):
-    print(f"\nInizia la sfida tra {pokemon1['nome']} e {pokemon2['nome']}!")
-    hp1, hp2 = 100, 100  
+# funzione per aggiungere XP a un Pokémon
+def aggiungi_xp(pokemon, pokedex):
+    xp_vittoria = 40  # XP guadagnati per ogni vittoria
 
-    for turno in range(1,4):
+    # Controlliamo se il Pokémon è già nel Pokédex e aggiorniamo gli XP
+    if str(pokemon['numero']) in pokedex:
+        pokedex[str(pokemon['numero'])]['xp'] += xp_vittoria
+    else:
+        # Se il Pokémon non è nel Pokédex, lo aggiungiamo con gli XP
+        pokemon['xp'] = xp_vittoria
+        pokedex[str(pokemon['numero'])] = pokemon
+
+    salva_pokedex(pokedex)  # Salviamo il Pokédex aggiornato
+    return pokedex[str(pokemon['numero'])]['xp']
+
+# simula una sfida tra due Pokémon
+def sfida_pokemon(pokemon1, pokemon2, pokedex):
+    print(f"\nInizia la sfida tra {pokemon1['nome']} e {pokemon2['nome']}!")
+    hp1, hp2 = 100, 100  # HP iniziali
+
+    for turno in range(1, 4):
         print(f"\n--- Turno {turno} ---")
         danno1 = random.randint(5, 30)
         danno2 = random.randint(5, 30)
@@ -80,10 +95,12 @@ def sfida_pokemon(pokemon1, pokemon2):
     print("\n--- Fine della sfida ---")
     if hp1 > hp2:
         print(f"{pokemon1['nome']} vince la sfida con {hp1} HP rimanenti!")
-        return True  
+        xp_totali = aggiungi_xp(pokemon1, pokedex)  # Aggiungiamo XP dopo la vittoria
+        print(f"XP totali di {pokemon1['nome']}: {xp_totali}")
+        return True  # pokemon1 vince
     else:
         print(f"{pokemon2['nome']} vince la sfida con {hp2} HP rimanenti!")
-        return False 
+        return False  # pokemon2 vince
 
 # funzione principale per catturare Pokémon
 def cattura_pokemon():
@@ -124,7 +141,7 @@ def cattura_pokemon():
                 pokemon2 = ottieni_pokemon_da_api(random.randint(1, 1025))
 
                 if pokemon2:
-                    if sfida_pokemon(pokemon1, pokemon2):
+                    if sfida_pokemon(pokemon1, pokemon2, pokedex):
                         print(f"{pokemon2['nome']} è stato sconfitto ed è stato aggiunto al tuo Pokédex!")
                         aggiungi_al_pokedex(pokedex, pokemon2)
         elif scelta == "4":
@@ -133,5 +150,5 @@ def cattura_pokemon():
         else:
             print("Opzione non valida. Riprova")
 
-#avvio del programma
+# avvio del programma
 cattura_pokemon()
