@@ -65,24 +65,4 @@ media_per_materia, media_voti_per_studente, media_per_materia_studente
 ```
 
 
-    ---------------------------------------------------------------------------
 
-    NameError                                 Traceback (most recent call last)
-
-    Cell In[65], line 2
-          1 #risultati
-    ----> 2 media_per_materia, media_voti_per_studente, media_per_materia_studente
-    
-
-    NameError: name 'media_voti_per_studente' is not defined
-
-
-
-```python
-
-```
-
-
-```python
-
-```
