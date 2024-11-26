@@ -46,6 +46,13 @@ y_pred=clasf.predict(X_test)
 report=classification_report(y_test, y_pred)
 conf_matrix=confusion_matrix(y_test, y_pred)
 
+#verifica di eventuale overfitting
+accuracy_train=clasf.score(X_train, y_train)
+print(f"Accuratezza training: {accuracy_train:.4f}")
+
+accuracy_test=clasf.score(X_test, y_test)
+print(f"Accuratezza test: {accuracy_test:.4f}")
+
 #visualizza report
 print(report)
 
@@ -57,9 +64,3 @@ plt.xlabel('Predizione')
 plt.ylabel('Reale')
 plt.show()
 
-#verifica di eventuale overfitting
-accuracy_train=clasf.score(X_train, y_train)
-print(f"Accuratezza training: {accuracy_train:.4f}")
-
-accuracy_test=clasf.score(X_test, y_test)
-print(f"Accuratezza test: {accuracy_test:.4f}")
