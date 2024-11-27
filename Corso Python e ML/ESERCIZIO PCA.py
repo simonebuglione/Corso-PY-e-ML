@@ -44,7 +44,7 @@ plt.show()
 
 
 #Applicazione PCA
-pca = PCA(n_components=10)
+pca = PCA(n_components=2)
 X_pca = pca.fit_transform(X)
 print(f"Shape dei dati ridimensionati: {X_pca.shape}")
 

@@ -51,3 +51,7 @@ plt.title('Matrice di Confusione')
 plt.xlabel('Predizione')
 plt.ylabel('Reale')
 plt.show()
+
+
+
+#dai risultati emerge che precision recall e f1score sono tutti pari a 1, quindi il modelloo ha classificato correttamente le istanze nel test set. il modello ha un'accuratezza pari al 100%. la matrice di confussione mostra che tutte le previsioni sono corrette, con ogni classe classificata correttamente nelle categorie.
