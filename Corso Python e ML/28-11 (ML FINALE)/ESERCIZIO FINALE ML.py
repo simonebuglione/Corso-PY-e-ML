@@ -57,12 +57,15 @@ for ax, image, label in zip(axes, digits.images, y):
 plt.show()
 
 
+#normalizza i dati dividendo i valori dei pixel per il massimo valore possibile (16)
+X_normalized = X / 16
+
 #preprocessing dei dati
 scaler = MinMaxScaler()
 X_normalized = scaler.fit_transform(X)
 
-# Applicazione della PCA
-pca = PCA(n_components=0.95)  # Manteniamo il 95% della varianza
+# Applicazione della PCA con 95% di varianza
+pca = PCA(n_components=0.95)  
 X_pca = pca.fit_transform(X_normalized)
 
 #dividi il dataset in un training set e un test set
@@ -81,7 +84,7 @@ y_pred = rf.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuratezza modello:{accuracy:.2f}")
 print("\nReport di classificazione:")
-print(classification_report(y_test, y_pred))  # Correzione qui: usa y_test e y_pred
+print(classification_report(y_test, y_pred))  
 
 #verifica dell'overfitting: comparazione tra accurata sul training set e test set
 train_accuracy = rf.score(X_train, y_train)
@@ -90,7 +93,6 @@ test_accuracy = accuracy_score(y_test, y_pred)
 print(f"\nAccuratezza sul training set: {train_accuracy:.2f}")
 print(f"Accuratezza sul test set: {test_accuracy:.2f}")
 
-#se l'accuratezza sul training set è molto maggiore di quella sul test set, possiamo sospettare overfitting
 
 #visualizzazione dei risultati (senza PCA)
 fig, axes = plt.subplots(1, 5, figsize=(10, 3))
